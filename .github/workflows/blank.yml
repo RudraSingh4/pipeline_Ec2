@@ -1,0 +1,21 @@
+name: Deploy and Create File on EC2
+
+on:
+  push:
+    branches:
+      - main # Adjust the branch as needed
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: SSH into EC2 and Create File
+        run: |
+          cat rudra-key.pem > private_key 
+          chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i "rudra-key.pem" ubuntu@ec2-54-198-180-178.compute-1.amazonaws.com 'echo "Hello, EC2!" > test_file.txt'
