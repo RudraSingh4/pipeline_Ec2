@@ -18,7 +18,7 @@ jobs:
         run: |
           cat rudra-key.pem > private_key 
           chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i "rudra-key.pem" ubuntu@ec2-54-198-180-178.compute-1.amazonaws.com 'echo "Hello, EC2!" > test_file.txt'
+          ssh -o StrictHostKeyChecking=no -i "rudra-key.pem" ubuntu@i-0250bca5347f3ed4e.compute-1.amazonaws.com 'echo "Hello, EC2!" > test_file.txt'
       - name: SSH into EC2 and Create File
         run: |
          curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo  NEW_RELIC_API_KEY=NRAK-GU5P9K9V71UEOSJ4GS4PIDB9AM5 NEW_RELIC_ACCOUNT_ID=3931862 /usr/local/bin/newrelic install
